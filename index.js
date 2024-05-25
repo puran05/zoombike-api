@@ -1,14 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors"); //this line added for react
 const Product = require("./models/product.model.js");
 const productRoute = require("./routes/product.route.js");
+const employeeRoute = require("./routes/employee.route.js");
 const app = express();
 
+app.use(cors()); //this line added for react
 //this is our middleware that we passed
 app.use(express.json());
 
 //routes
 app.use("/api/products", productRoute);
+
+app.use("/api/employees", employeeRoute);
+
+app.use("/api/managers", employeeRoute);
 
 app.get("/", (req, res) => {
   res.send("Hi hope you are good");
